@@ -419,7 +419,7 @@ const isBdayMonth = s=>!!s.birthday && +String(s.birthday).slice(5,7)===new Date
 const $ = id=>document.getElementById(id);
 const esc = s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 /* letter sits BEHIND the photo; shows only if the photo is missing */
-const imgOf = s=>`<div class="init">${esc((s.name||"?")[0].toUpperCase())}</div><img src="${IMG_DIR}${encodeURIComponent(s.name)}.jpeg" alt="" onerror="this.style.display='none'">`;
+const imgOf = s=>`<div class="init">${esc((s.name||"?")[0].toUpperCase())}</div><img src="${IMG_DIR}${encodeURIComponent(s.name)}.png" alt="" onerror="this.style.display='none'">`;
 const arenaOf = e=>{let a=ARENAS[0];for(const x of ARENAS)if(e>=x.min)a=x;return a;};
 const nextArena = e=>ARENAS.find(x=>x.min>e)||null;
 function toast(m,bad){const t=$("toast");t.textContent=m;t.className=bad?"show bad":"show";clearTimeout(t._t);t._t=setTimeout(()=>t.className="",2200);}
@@ -473,7 +473,7 @@ function startApp(id){
    ============================================================ */
 function renderMe(){
   $("meName").textContent=me.name; $("meJokens").textContent=me.coins;
-  $("meImg").src=IMG_DIR+encodeURIComponent(me.name)+".jpeg";
+  $("meImg").src=IMG_DIR+encodeURIComponent(me.name)+".png";
   $("shopBal").innerHTML=me.coins+" "+COIN;
 }
 function renderRank(){

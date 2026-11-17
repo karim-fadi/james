@@ -187,7 +187,7 @@ nav .nb{position:absolute;top:2px;right:4px;min-width:16px;height:16px;padding:0
         <input class="inp" id="newName" placeholder="Full name (matches image file name)">
         <label class="lbl">BIRTHDAY 🎂 (optional — can be added later)</label>
         <div class="row"><input class="inp" id="newBday" type="date"><button class="btn green sm" onclick="addStudent()">Add</button></div>
-        <p class="muted" style="margin-top:8px">Photo must be <b>images/&lt;name&gt;.jpeg</b> next to the student site.</p>
+        <p class="muted" style="margin-top:8px">Photo must be <b>images/&lt;name&gt;.png</b> next to the student site.</p>
       </div>
       <div id="stuList"></div>
     </section>
@@ -393,7 +393,7 @@ let students=[], news=[], challenges=[], shop=[], att={}, spirit={};
 const $ = id=>document.getElementById(id);
 const esc = s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const arenaOf = e=>{let a=ARENAS[0];for(const x of ARENAS)if(e>=x.min)a=x;return a;};
-const avatar = s=>`<div class="av">${esc((s.name||"?")[0])}<img src="${IMG_DIR}${encodeURIComponent(s.name)}.jpeg" alt="" onerror="this.remove()"></div>`;
+const avatar = s=>`<div class="av">${esc((s.name||"?")[0])}<img src="${IMG_DIR}${encodeURIComponent(s.name)}.png" alt="" onerror="this.remove()"></div>`;
 function toast(m,bad){const t=$("toast");t.textContent=m;t.className=bad?"show bad":"show";clearTimeout(t._t);t._t=setTimeout(()=>t.className="",2200);}
 function openModal(h){$("modal").innerHTML=`<button class="x" onclick="closeModal()">✕</button>`+h;$("overlay").classList.add("show");}
 function closeModal(){$("overlay").classList.remove("show");}
@@ -805,7 +805,7 @@ function renderChal(){
 }
 
 /* ============================================================
-   10. SHOP (with photo upload → stored as a small JPEG data URL)
+   10. SHOP (with photo upload → stored as a small png data URL)
    ============================================================ */
 let giftPhoto="";
 function loadGiftPhoto(input){
@@ -815,7 +815,7 @@ function loadGiftPhoto(input){
     const S=320, c=document.createElement("canvas"); c.width=c.height=S;
     const ctx=c.getContext("2d"); const m=Math.min(img.width,img.height);
     ctx.drawImage(img,(img.width-m)/2,(img.height-m)/2,m,m,0,0,S,S);   // center-crop square
-    giftPhoto=c.toDataURL("image/jpeg",.8); URL.revokeObjectURL(url);
+    giftPhoto=c.toDataURL("image/png",.8); URL.revokeObjectURL(url);
     $("gPreview").src=giftPhoto; $("gPreview").style.display="block"; $("gPhLabel").textContent="📷 Change photo";
   };
   img.src=url;
